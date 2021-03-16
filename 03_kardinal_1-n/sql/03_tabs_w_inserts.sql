@@ -35,3 +35,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`kittens` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- DT: Struktur
+DESCRIBE kittens;
+
+-- DT: Inserts
+INSERT INTO `mydb`.`kittens` (`id`, `kitten_name`, `fur_color`, `cats_id`) VALUES (DEFAULT, "Grizzi_1", "white", 1);
+INSERT INTO `mydb`.`kittens` (`id`, `kitten_name`, `fur_color`, `cats_id`) VALUES (DEFAULT, "Grizzi_2", "white", 1);
+INSERT INTO `mydb`.`kittens` (`id`, `kitten_name`, `fur_color`, `cats_id`) VALUES (DEFAULT, "Mausini_1", "striped", 2);
+
+-- DT: Inhalte
+SELECT * FROM kittens;
+
