@@ -1,4 +1,9 @@
--- 2. verbundene Tabellen
+-- 3. verbundene Tabellen + Inserts
+
+-- Vorbereitung
+DROP DATABASE IF EXISTS mydb;
+CREATE DATABASE mydb;
+USE mydb;
 
 -- Mastertabelle: unverändert
 CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
@@ -7,6 +12,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
   `fur_color` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+-- Inserts: MT (Mastertable)
+INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Grizabella", "white");
+INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Alonzo", "grey");
+INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Mausi", "striped");
 
 -- Detailtabelle: Verbindung zur MT über Fremdschlüssel
 CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
