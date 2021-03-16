@@ -13,10 +13,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cats` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+-- Struktur: MT
+DESCRIBE cats;
+
 -- Inserts: MT (Mastertable)
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Grizabella", "white");
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Alonzo", "grey");
 INSERT INTO `mydb`.`cats` (`id`, `cat_name`, `fur_color`) VALUES (DEFAULT, "Mausi", "striped");
+
+-- Inhalte: MT
+SELECT * FROM cats;
 
 -- Detailtabelle: Verbindung zur MT über Fremdschlüssel
 CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
@@ -32,3 +38,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- Struktur: DT
+DESCRIBE servants;
+
+-- Inserts: DT (Detailtable)
+INSERT INTO `mydb`.`servants` (`id`, `srv_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Peter", 5, 2);
+INSERT INTO `mydb`.`servants` (`id`, `srv_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Josef", 2, 1);
+INSERT INTO `mydb`.`servants` (`id`, `srv_name`, `yrs_served`, `cats_id`) VALUES (DEFAULT, "Max", 12, 3);
+
+-- Inhalte: MT
+SELECT * FROM servants;
