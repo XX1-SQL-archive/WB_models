@@ -4,7 +4,6 @@ CREATE DATABASE mydb;
 USE mydb;
 
 /*  SERVANTS */
-
 -- Servants: CREATE
 CREATE TABLE IF NOT EXISTS `mydb`.`servants` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -23,13 +22,27 @@ INSERT INTO `mydb`.`servants` (`id`, `srv_name`, `yrs_served`) VALUES (DEFAULT, 
 -- Servants: Inhalte
 SELECT * FROM servants;
 
--- Products: ohne Fremdschlüssel
+/*  PRODUCTS */
+
+-- Products: CREATE
 CREATE TABLE IF NOT EXISTS `mydb`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NOT NULL,
   `product_price` DECIMAL(4,2) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+-- Products: Struktur
+DESCRIBE products;
+
+-- Products: Inserts
+INSERT INTO `mydb`.`products` (`id`, `product_name`, `product_price`) VALUES (DEFAULT, "Whiskas|Lachs", 2.75);
+INSERT INTO `mydb`.`products` (`id`, `product_name`, `product_price`) VALUES (DEFAULT, "Whiskas|Huhn", 2.80);
+INSERT INTO `mydb`.`products` (`id`, `product_name`, `product_price`) VALUES (DEFAULT, "Felix|Jelly", 3.75);
+INSERT INTO `mydb`.`products` (`id`, `product_name`, `product_price`) VALUES (DEFAULT, "Felix|Sauce", 3.80);
+
+-- Products: Inhalte
+SELECT * FROM products;
 
 -- ServantsProducts
 CREATE TABLE IF NOT EXISTS `mydb`.`products_has_servants` (
