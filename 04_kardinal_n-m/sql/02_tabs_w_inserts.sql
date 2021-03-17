@@ -44,7 +44,8 @@ INSERT INTO `mydb`.`products` (`id`, `product_name`, `product_price`) VALUES (DE
 -- Products: Inhalte
 SELECT * FROM products;
 
--- ServantsProducts
+/*  SERVANTS:PRODUCTS - Kaufprozesse */
+-- ServantsProducts: Create
 CREATE TABLE IF NOT EXISTS `mydb`.`products_has_servants` (
   `products_id` INT NOT NULL,
   `servants_id` INT NOT NULL,
@@ -61,4 +62,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`products_has_servants` (
     REFERENCES `mydb`.`servants` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
+ENGINE = InnoDB;
+
+-- ServantsProducts: Struktur
+DESCRIBE products_has_servants;
+
+-- ServantsProducts: Inserts
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (2, 1);
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (3, 1);
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (1, 2);
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (2, 2);
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (3, 2);
+INSERT INTO `mydb`.`products_has_servants` (`products_id`, `servants_id`) VALUES (4, 2);
+
+-- ServantsProducts: Inhalte
+SELECT * FROM products_has_servants;
