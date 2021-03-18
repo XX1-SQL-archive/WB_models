@@ -63,19 +63,35 @@ on cats.id = servants.cats_id
 ORDER BY yrs_served DESC;
 ; 
 
+# Jenny (nur Servants)
+SELECT 
+	max(yrs_served) AS "Längste Dienstzeit",
+	CONCAT (srv_name, " ist der Diener mit der Längsten zeit" ) AS Dienstzeit 
+FROM servants
+GROUP BY srv_name 
+ORDER BY yrs_served DESC
+LIMIT 1;
+;
+
+#Holger (Servants als Subquery)
+SELECT 
+	concat(srv_name, " ist der Diener mit der längsten Dienstzeit!") AS Dienstzeit 
+FROM cats INNER JOIN servants ON servants.cats_id=cats.id 
+WHERE yrs_served = (SELECT max(yrs_served) FROM servants) 
+;
+
 -- Inner Join 4 / Dienstzeit
 -- "X ist der Diener mit der längsten Dienstzeit" // max()
 SELECT
     concat(srv_name, " - der Diener von ", cat_name, " - ist der Diener mit der längsten Dienstzeit.") AS Dienstzeit 
-FROM cats inner join servants on cats.id = servants.cats_id
+FROM cats INNER JOIN servants ON cats.id = servants.cats_id
 -- Filterung mit SUBQUERY
 WHERE yrs_served = ( 
 					SELECT 
 						max(yrs_served) 
-					FROM cats inner join servants 
-                    on cats.id = servants.cats_id
+					FROM cats INNER JOIN servants 
+                    ON cats.id = servants.cats_id
                     )
-                   
 ;
 
 
