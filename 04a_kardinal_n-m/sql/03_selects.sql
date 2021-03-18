@@ -83,8 +83,10 @@ CREATE TABLE tmp
     anzahl INT(11) NOT NULL
 );
 
+-- tmp: Struktur
 DESCRIBE tmp;
 
+-- Daten aus SELECT in Tabelle tmp
 INSERT INTO tmp
 SELECT
 	product_name AS Produkt,
@@ -96,8 +98,10 @@ INNER JOIN products ON products.id = purchases.products_id
 GROUP BY product_name,product_price
 ;
 
+-- tmp: Inhalte
 SELECT * FROM tmp;
 
+-- Berechnung Umsätze
 SELECT
 	product_name AS Produkt,
     product_price AS Preis,
@@ -106,10 +110,5 @@ SELECT
 FROM tmp
 ORDER BY Umsatz DESC;
 
-
-
-
-
-
-
 -- Wer bekommt den Lachs?
+-- Ansatz: Produkt --> Diener : cats_id --> cats: Namen
