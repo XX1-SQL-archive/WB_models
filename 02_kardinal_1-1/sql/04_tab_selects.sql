@@ -43,3 +43,17 @@ ON cats.id = servants.cats_id
 #WHERE cat_name = "Grizabella"
 WHERE srv_name = "Josef"
 ;
+
+-- Inner Join 3 / Dienstzeit
+SELECT 
+	srv_name AS Diener,
+    yrs_served AS Dienstzeit
+FROM cats INNER JOIN servants
+ON cats.id = servants.cats_id
+ORDER BY yrs_served DESC;
+;
+
+-- Inner Join 3a / Dienstzeit
+-- "X dient Y seit Z Jahren" ?
+
+
