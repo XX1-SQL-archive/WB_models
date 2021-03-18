@@ -14,4 +14,14 @@ INNER JOIN servants ON servants.id = purchases.servants_id
 INNER JOIN products ON products.id = purchases.products_id
 ;
 
+-- Welche Artikel hat Holger gekauft?
+SELECT
+	product_name AS Artikel
+FROM purchases 
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+#WHERE srv_name = "Holger"
+WHERE srv_name = "Peter"
+;
+
 
