@@ -75,6 +75,41 @@ ORDER BY Anzahl DESC;
 ;
 
 -- Lösung B: Berechnung mit tmp-Tabelle
+DROP TABLE IF EXISTS tmp;
+CREATE TABLE tmp
+(
+	product_name VARCHAR(45) NOT NULL,
+    product_price DECIMAL(4,2) NOT NULL,
+    anzahl INT(11) NOT NULL
+);
+
+DESCRIBE tmp;
+
+INSERT INTO tmp
+SELECT
+	product_name AS Produkt,
+    product_price AS Preis,
+    count(product_name) AS Anzahl
+FROM purchases 
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+GROUP BY product_name,product_price
+;
+
+SELECT * FROM tmp;
+
+SELECT
+	product_name AS Produkt,
+    product_price AS Preis,
+	Anzahl,
+    Anzahl * product_price AS Umsatz
+FROM tmp
+ORDER BY Umsatz DESC;
+
+
+
+
+
 
 
 -- Wer bekommt den Lachs?
