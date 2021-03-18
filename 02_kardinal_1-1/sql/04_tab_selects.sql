@@ -55,5 +55,13 @@ ORDER BY yrs_served DESC;
 
 -- Inner Join 3a / Dienstzeit
 -- "X dient Y seit Z Jahren" ?
+SELECT
+	#concat(srv_name, " Dient seit sovielen Jahren: ", yrs_served) AS Dienstjahre # Jenny
+    concat(srv_name, " dient ", cat_name, " seit ", yrs_served, " Jahren.") AS Dienstzeit 
+FROM cats inner join servants
+on cats.id = servants.cats_id
+ORDER BY yrs_served DESC;
+; 
 
-
+-- Inner Join 4 / Dienstzeit
+-- "X ist der Diener mit der längsten Dienstzeit" // max()
