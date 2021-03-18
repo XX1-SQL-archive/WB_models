@@ -61,6 +61,7 @@ ORDER BY Anzahl DESC;
 ;
 
 -- Welche Umsätze hatte das Produkt X?
+-- Lösung A: Berechnung in gleicher Tabelle
 SELECT
 	product_name AS Produkt,
     product_price AS Preis,
@@ -69,8 +70,11 @@ SELECT
 FROM purchases 
 INNER JOIN servants ON servants.id = purchases.servants_id
 INNER JOIN products ON products.id = purchases.products_id
-GROUP BY product_name
+GROUP BY Produkt, Preis
 ORDER BY Anzahl DESC;
 ;
+
+-- Lösung B: Berechnung mit tmp-Tabelle
+
 
 -- Wer bekommt den Lachs?
