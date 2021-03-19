@@ -89,12 +89,10 @@ SELECT * FROM Auftragsposten; -- Alias AP
 SELECT * FROM Reservierung; -- Alias R
 SELECT * FROM Artikel; -- A
 
-SELECT  
-	*
-FROM Auftragsposten
-WHERE AuftrNr = 2
-;
+-- Vorbereitung
+SELECT  * FROM Auftragsposten WHERE AuftrNr = 2;
 
+-- mit INNER JOIN / ON
 SELECT 
 	R.Artnr,
     A.Bezeichnung,
@@ -105,6 +103,10 @@ INNER JOIN Artikel AS A ON A.ANr = R.Artnr
 WHERE AP.AuftrNr = 2
 ;
 
-
+-- mit Kreuzprodukt / WHERE
+-- Kreuzprodukt
+SELECT R.Artnr, A.Bezeichnung, R.Anzahl 
+FROM  Auftragsposten AP, Reservierung R, Artikel A 
+WHERE AP.PosNr = R.Posnr AND A.ANr = R.Artnr AND AP.AuftrNr = 2
 
 
