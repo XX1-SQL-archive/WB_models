@@ -11,16 +11,26 @@ die mehr als 3000 Euro verdienen.
 SELECT * FROM Personal;
 
 -- Query
-
+SELECT
+	Name,
+    Gehalt
+FROM personal
+WHERE Gehalt > 3000
+#ORDER BY Gehalt DESC;
+ORDER BY Gehalt ASC;
+;
 
 /* Query 2
 Geben Sie die Gesamtanzahl der für Aufträge reservierten Artikel aus 
 (die benötigten Informationen stehen in der Relation Reservierung).
 */
 
+-- ges. Tabelle
+SELECT * FROM Reservierung;
 
-
-
+SELECT 
+	 sum(Anzahl) AS "Reservierungen (kum.)" 
+FROM Reservierung;
 
 /* Query 3
 Geben Sie alle Artikel der Relation Lager aus, deren Bestand abzüglich 
@@ -33,7 +43,13 @@ SELECT * FROM Lager; -- Tab. Lager
 SELECT * FROM Artikel; -- Tab. Artikel
 
 -- Vorbereitung: Tab. Lager + Bedingung
-
+SELECT 
+	Artnr AS "Artikelnr.",
+    Bestand - Mindbest - Reserviert AS "Ber. Wert"
+FROM Lager
+WHERE Bestand - Mindbest - Reserviert < 3
+ORDER BY Bestand - Mindbest - Reserviert DESC
+; 
 
 
 
