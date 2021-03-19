@@ -24,7 +24,7 @@ DROP DATABASE IF EXISTS bike;
 CREATE DATABASE bike;
 USE bike;
 
-SELECT"Installation der BIKE-Datenbank. Bitte etwas Geduld";
+SELECT "Installation der BIKE-Datenbank. Bitte etwas Geduld";
 
 # ----------------------------------
 # Anlegen der Tabellen:

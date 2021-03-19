@@ -1,6 +1,6 @@
 SHOW DATABASES;
 USE bike;
-SHOW tables;
+SHOW TABLES;
 
 DESCRIBE artikel;
 SELECT * FROM artikel;
