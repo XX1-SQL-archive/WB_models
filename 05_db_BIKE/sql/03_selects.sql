@@ -68,7 +68,16 @@ so ist dies nicht weiter zu berücksichtigen. Tab. Teilestruktur --> Anzahl
 */
 
 SELECT * FROM Teilestruktur;
+SELECT * FROM Artikel;
 
+SELECT 
+	Artnr,
+	Bezeichnung,
+    count(Anzahl) AS Teile
+FROM Teilestruktur INNER JOIN Artikel ON Teilestruktur.Artnr = Artikel.Anr
+GROUP BY Artnr
+HAVING Teile > 1  # wirklich nur zusammengesetzte Artikel > 1
+;
 
 
 /* Query 5
