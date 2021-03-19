@@ -120,11 +120,12 @@ SELECT
 FROM purchases 
 INNER JOIN servants ON servants.id = purchases.servants_id
 INNER JOIN products ON products.id = purchases.products_id
-INNER JOIN cats on cats.id = purchases.servants_id
+#INNER JOIN cats on cats.id = purchases.servants_id
+INNER JOIN cats on cats.id = servants.cats_id
 WHERE product_name like "%Lachs%" 
 ;
 
--- Katzen würden Whiskas kaufen / Mausi mag gerne Lachs! // VIEWs
+-- Katzen würden Whiskas kaufen / Grizabella mag gerne Lachs! // VIEWs
 DROP VIEW IF EXISTS who_purchased_salmon;
 CREATE VIEW who_purchased_salmon AS
 SELECT
