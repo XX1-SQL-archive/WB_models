@@ -112,3 +112,39 @@ ORDER BY Umsatz DESC;
 
 -- Wer bekommt den Lachs?
 -- Ansatz: Produkt --> Diener : cats_id --> cats: Namen
+
+#Jenny
+SELECT 
+	cat_name as Katze,
+	product_name as produkt
+FROM purchases 
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+INNER JOIN cats on cats.id = purchases.servants_id
+WHERE product_name like "%Lachs%" 
+;
+
+-- Katzen würden Whiskas kaufen / Mausi mag gerne Lachs! // VIEWs
+DROP VIEW IF EXISTS who_purchased_salmon;
+CREATE VIEW who_purchased_salmon AS
+SELECT
+    srv_name AS Kunde,
+    cats_id 
+FROM purchases 
+INNER JOIN servants ON servants.id = purchases.servants_id
+INNER JOIN products ON products.id = purchases.products_id
+WHERE product_name LIKE "%Lachs%"
+;
+
+SELECT * FROM who_purchased_salmon;
+
+SELECT
+	concat(cat_name, " bekommt den Lachs!") AS Katze
+FROM cats INNER JOIN who_purchased_salmon ON cats.id = who_purchased_salmon.cats_id
+;
+
+
+
+
+
+
