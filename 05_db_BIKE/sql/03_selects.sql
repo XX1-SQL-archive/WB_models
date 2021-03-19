@@ -79,15 +79,31 @@ GROUP BY Artnr
 HAVING Teile > 1  # wirklich nur zusammengesetzte Artikel > 1
 ;
 
-
 /* Query 5
 Geben Sie alle Artikel aus, die vom Auftrag mit der Auftragsnummer 2 reserviert sind.
 Geben Sie dazu zu jedem Artikel die Artikelnummer, die Artikelbezeichnung und die Anzahl 
 der für diesen Auftrag reservierten Artikel aus. 
 */
 
-SELECT * FROM Auftragsposten;
-SELECT * FROM Reservierung;
+SELECT * FROM Auftragsposten; -- Alias AP
+SELECT * FROM Reservierung; -- Alias R
+SELECT * FROM Artikel; -- A
+
+SELECT  
+	*
+FROM Auftragsposten
+WHERE AuftrNr = 2;
+
+SELECT 
+	R.Artnr,
+    A.Bezeichnung,
+    R.Anzahl
+FROM Auftragsposten AS AP
+INNER JOIN Reservierung AS R ON AP.PosNr = R.Posnr
+INNER JOIN Artikel AS A ON A.ANr = R.Artnr
+WHERE AP.AuftrNr = 2
+;
+
 
 
 
