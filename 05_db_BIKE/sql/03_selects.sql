@@ -44,21 +44,21 @@ SELECT * FROM Artikel; -- Tab. Artikel
 
 -- Vorbereitung: Tab. Lager + Bedingung
 SELECT 
-	Artnr AS "Artikelnr.",
-    Bestand - Mindbest - Reserviert AS "Ber. Wert"
+	Artnr AS Artikelnummer,
+    (Bestand - Mindbest - Reserviert) AS Berechnung
 FROM Lager
-WHERE Bestand - Mindbest - Reserviert < 3
-ORDER BY Bestand - Mindbest - Reserviert DESC
+WHERE (Bestand - Mindbest - Reserviert) < 3
+ORDER BY Berechnung DESC
 ; 
 
 -- Tab. Lager + Artikel m. INNER JOIN + Bedingung
 SELECT 
-	Artnr AS "Artikelnr.",
+	Artnr AS Artikelnummer,
     Bezeichnung,
-    Bestand - Mindbest - Reserviert AS "Ber. Wert"
+    (Bestand - Mindbest - Reserviert) AS Berechnung
 FROM Lager INNER JOIN Artikel ON Lager.Artnr = Artikel.Anr
 WHERE Bestand - Mindbest - Reserviert < 3
-ORDER BY Bestand - Mindbest - Reserviert DESC
+ORDER BY Berechnung DESC
 ;
 
 /* Query 4
@@ -73,7 +73,7 @@ SELECT * FROM Artikel;
 SELECT 
 	Artnr,
 	Bezeichnung,
-    count(Anzahl) AS Teile
+    count(Artnr) AS Teile
 FROM Teilestruktur INNER JOIN Artikel ON Teilestruktur.Artnr = Artikel.Anr
 GROUP BY Artnr
 HAVING Teile > 1  # wirklich nur zusammengesetzte Artikel > 1
@@ -92,7 +92,8 @@ SELECT * FROM Artikel; -- A
 SELECT  
 	*
 FROM Auftragsposten
-WHERE AuftrNr = 2;
+WHERE AuftrNr = 2
+;
 
 SELECT 
 	R.Artnr,
