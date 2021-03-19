@@ -51,11 +51,15 @@ WHERE Bestand - Mindbest - Reserviert < 3
 ORDER BY Bestand - Mindbest - Reserviert DESC
 ; 
 
-
-
 -- Tab. Lager + Artikel m. INNER JOIN + Bedingung
-
-
+SELECT 
+	Artnr AS "Artikelnr.",
+    Bezeichnung,
+    Bestand - Mindbest - Reserviert AS "Ber. Wert"
+FROM Lager INNER JOIN Artikel ON Lager.Artnr = Artikel.Anr
+WHERE Bestand - Mindbest - Reserviert < 3
+ORDER BY Bestand - Mindbest - Reserviert DESC
+;
 
 /* Query 4
 Aus wie vielen Einzelheiten bestehen alle zusammengesetzten Artikel?
